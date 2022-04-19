@@ -1,0 +1,28 @@
+mvo:
+    model_dir: './models/'
+    batch_size: 2
+    epochs: 100
+    multimodal_data_dir: 'C:/datasets/milliVO_dataset/milliVO_dataset'
+    tf_data_dir: 'C:/datasets/milliVO_dataset/tf_dataset/'
+eval:
+    model: 'cross-mio'
+    eqochs:
+        - 18
+    seqs:
+        - 5
+        - 17
+        - 23
+
+nn_opt:
+    cross-mio_params:
+        nn_name: cross-mio_turtle(new_data_4_o1)
+        cross_att_type: sigmoid
+        imu_att_type: temporal
+        imu_length: 30
+        lr_rate: 0.0001
+        rho: 0.9
+        epsilon: 1e-08
+        decay: 0.0
+        fc_trans: 1
+        fc_rot: 0.001
+    
