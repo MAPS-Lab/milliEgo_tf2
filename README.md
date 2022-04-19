@@ -1,5 +1,4 @@
 [![License CC BY-NC-SA 4.0](https://img.shields.io/badge/license-CC4.0-blue.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode)
-![Python 3.6](https://img.shields.io/badge/python-3.6-green.svg)
 
 # milliEgo
 ### [Youtube](https://www.youtube.com/watch?v=I9vjoKGY2ts&feature=youtu.be) | [Paper](https://arxiv.org/abs/2006.02266) <br>
@@ -10,71 +9,33 @@ Chris Xiaoxuan Lu, Muhamad Risqi U. Saputra, Peijun Zhao, Yasin Almalioglu, Pedr
 In [SenSys 2020](https://www.sigmobile.org/sensys/2020/).  
 
 ## Prerequisites
-- Linux
-- Docker
-- Python 3.6.8
-- CUDNN 9.0
 
-## Getting Started
-### Docker Installation
-Make a tensorflow 1.9.0 docker environment. Install nvidia-docker with https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker
-Simply install docker on your machine and pull the correct version of tensorflow docker:
+- TensorFlow 2.X
 
-```
-docker pull tensorflow/tensorflow:1.9.0-gpu-py3
-```
 ### Pre-trained mmWave Radar Feature Extractor and milliEgo model
 - After git clone this repository, enter the project directory,
 ```
 mkdir -p models/cross-mio
 ```
-- Download the pre-trained CNN model ['cnn.h5'](https://www.dropbox.com/s/osi5w1gaaiiykhi/cnn.h5?dl=0) (dropbox link) for mmWave feature extraction and put it under `./models/`
-- Download the trained milliEgo model '140' and the respective config file `nn_opt.json` from [here](https://www.dropbox.com/sh/g0rpk0ah6oldyp9/AACTjB6fIUfw02ol3Adj2wqga?dl=0) (dropbox link). Put both of them in `./models/cross-mio/`.
+- Download the trained milliEgo model '18'` from [here](https://drive.google.com/file/d/1KxUUat5yP1oAsUSg0T6n3JZh94sKWHy2/view?usp=sharing).
+-  Unzip and put it in `./models/cross-mio/`.
 
 ### Dataset
 - To train and test a model, please download our dataset from [here](https://www.dropbox.com/s/q6z81pe1mxr0iyo/milliVO_dataset.zip?dl=0) (dropbox link).
-
-- After downloading and unzip, please put the dataset folder in `<host dataset dir path>` of your host machine.
-
-### Start the docker container
-
-Suppose dataset is stored in host machine under `<host dataset dir path>`. Run docker with:
-
-```
-docker run --gpus all -it --rm -v <host dataset dir>:/datasets/multi_gap_5 tensorflow/tensorflow:1.9.0-gpu-py3 bash
-```
-Note the 'multi_gap_5' is dummy directory name but essentially it implies the down-sampling intervals of the mmWave radar data - you should have enough parallax for a good visual odometry.
-
-### Install dependencies in docker container:
-
-```
-pip install tensorflow-estimator==1.14.0
-pip install keras==2.1.6
-apt-get update -y
-apt-get install python3-tk
-```
+- Specify the path of the dataset in "multimodal_data_dir" in config.yaml
+- Run dataset_convert.py to convert the training set to tf.data.Dataset, it will be store in the path specified in "tf_data_dir" in config.yaml
 
 ### Testing
-In host machine, copy code folder into docker container.
-
 ```
-docker cp <host code dir> <container ID>:/code
+python test.py
 ```
-
-In the docker container, run testing on pre-trained model (cross-attention):
-
-```
-cd /code
-python test_trajectory.py
-```
-Check the generated trajectories in `/code/figs` and results to be quantitatively evaluated in `/code/results`.
 
 ### Training
-In docker container, run training:
+```
+python train.py
+```
 
-```
-python /code/train_cross_att.py
-```
+
 
 ## Citation
 
