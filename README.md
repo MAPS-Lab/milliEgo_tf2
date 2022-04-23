@@ -22,19 +22,18 @@ mkdir -p models/cross-mio
 
 ### Dataset
 - To train and test a model, please download our dataset from [here](https://www.dropbox.com/s/q6z81pe1mxr0iyo/milliVO_dataset.zip?dl=0) (dropbox link).
-- Specify the path of the dataset in "multimodal_data_dir" in config.yaml
+- Specify the path of the dataset in "multimodal_data_dir", and target path to store tf.data.Dataset in "tf_data_dir" in config.yaml
 - Run dataset_convert.py to convert the training set to tf.data.Dataset, it will be store in the path specified in "tf_data_dir" in config.yaml
 
-### Testing
+### Printing trajectory
 ```
 python test.py
 ```
 
 ### Training
 ```
-python train.py
+python tf_train.py
 ```
-
 
 
 ## Citation
