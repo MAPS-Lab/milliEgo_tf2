@@ -10,20 +10,22 @@ In [SenSys 2020](https://www.sigmobile.org/sensys/2020/).
 
 ## Prerequisites
 
-- TensorFlow 2.X
+- TensorFlow 2.X (tested in '2.9.0-dev20220322')
+- PyYAML
+- h5py
 
 ### Pre-trained mmWave Radar Feature Extractor and milliEgo model
 - After git clone this repository, enter the project directory,
 ```
 mkdir -p models/cross-mio
 ```
-- Download the trained milliEgo model '18'` from [here](https://drive.google.com/file/d/1KxUUat5yP1oAsUSg0T6n3JZh94sKWHy2/view?usp=sharing).
+- Download the trained milliEgo model '18' from [here](https://drive.google.com/file/d/1KxUUat5yP1oAsUSg0T6n3JZh94sKWHy2/view?usp=sharing).
 -  Unzip and put it in `./models/cross-mio/`.
 
 ### Dataset
 - To train and test a model, please download our dataset from [here](https://www.dropbox.com/s/q6z81pe1mxr0iyo/milliVO_dataset.zip?dl=0) (dropbox link).
-- Specify the path of the dataset in "multimodal_data_dir", and target path to store tf.data.Dataset in "tf_data_dir" in config.yaml
-- Run dataset_convert.py to convert the training set to tf.data.Dataset, it will be store in the path specified in "tf_data_dir" in config.yaml
+- Specify the path of the dataset in "multimodal_data_dir", and a target path to store tf.data.Dataset in "tf_data_dir" in config.yaml
+- Run dataset_convert.py to convert the training set to tf.data.Dataset, will be stored in the path specified in "tf_data_dir" in config.yaml
 
 ### Printing trajectory
 ```
