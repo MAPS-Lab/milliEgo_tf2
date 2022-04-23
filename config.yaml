@@ -15,7 +15,7 @@ eval:
 
 nn_opt:
     cross-mio_params:
-        nn_name: cross-mio_turtle(new_data_4_o1)
+        nn_name: cross-mio_turtle_1
         cross_att_type: sigmoid
         imu_att_type: temporal
         imu_length: 30
